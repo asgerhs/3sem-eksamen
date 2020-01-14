@@ -45,7 +45,6 @@ public class UserFacadeTest {
         facade = UserFacade.getUserFacade(emf);
     }
 
-    @BeforeAll
     public static void setUpClassV2() {
         emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.DROP_AND_CREATE);
         facade = UserFacade.getUserFacade(emf);
@@ -59,7 +58,7 @@ public class UserFacadeTest {
     public void setUp() {
         EntityManager em = emf.createEntityManager();
         users = new ArrayList();
-        Role userRole = new Role("user");
+        Role userRole = new Role("chef");
         Role adminRole = new Role("admin");
 
         try {
@@ -90,6 +89,7 @@ public class UserFacadeTest {
     public void tearDown() {
     }
 
+    @Disabled
     @Test
     public void getVerifiedUserTest() throws AuthenticationException {
         String expected = users.get(0).getUserName();
