@@ -1,4 +1,4 @@
-const URL = "https://asgerhs.dk/CA3";
+const URL = "https://asgerhs.dk/3sem-eksamen";
 
 function handleHttpErrors(res) {
     if (!res.ok) {
@@ -22,7 +22,7 @@ function ApiFacade() {
     const logout = () => {
         localStorage.removeItem("jwtToken");
     }
-    
+
     const makeOptions = (method, addToken, body) => {
         var opts = {
             method: method,
