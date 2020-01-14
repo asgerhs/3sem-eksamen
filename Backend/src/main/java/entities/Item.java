@@ -1,13 +1,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -23,7 +21,7 @@ public class Item implements Serializable {
     private Long id;
     private String name;
     private int price;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Storage itemId;
     @OneToOne(mappedBy = "item")
     private Ingredient ingredient;

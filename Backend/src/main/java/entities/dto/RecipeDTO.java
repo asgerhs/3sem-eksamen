@@ -23,7 +23,7 @@ public class RecipeDTO {
 
     public RecipeDTO(Recipe recipe) {
         if (recipe.getId() != null) {
-            this.id = id;
+            this.id = recipe.getId();
         }
         this.plannerId = new ArrayList();
         for(WeeklyMenuPlanner planner : recipe.getPlannerId()){
@@ -33,8 +33,8 @@ public class RecipeDTO {
         for(Ingredient ingredient : recipe.getIngredients()){
             this.ingredients.add(new IngredientDTO(ingredient));
         }
-        this.prepTime = prepTime;
-        this.directions = directions;
+        this.prepTime = recipe.getPrepTime();
+        this.directions = recipe.getDirections();
     }
 
     public Long getId() {

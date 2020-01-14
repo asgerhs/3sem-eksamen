@@ -22,11 +22,11 @@ public class ItemDTO {
 
     public ItemDTO(Item item) {
         if (item.getId() != null) {
-            this.id = id;
+            this.id = item.getId();
         }
+        this.name = item.getName();
+        this.price = item.getPrice();
         this.itemId = item.getItemId();
-        this.name = name;
-        this.price = price;
     }
 
     public Long getId() {
