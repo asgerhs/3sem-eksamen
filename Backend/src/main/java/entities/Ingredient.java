@@ -1,11 +1,14 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -20,15 +23,19 @@ public class Ingredient implements Serializable {
     private Long id;
     private int amount;
     @ManyToOne
-    private Recipe ingredientId;
-    @ManyToOne
-    private Item itemId;
+    private Recipe recipe;
+    @OneToOne
+    private Item item;
+
+    public Ingredient(int amount, Item item) {
+        this.amount = amount;
+        this.item = item;
+    }
+    
     
 
     public Ingredient() {
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -46,6 +53,22 @@ public class Ingredient implements Serializable {
         this.amount = amount;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
     
     
+
 }

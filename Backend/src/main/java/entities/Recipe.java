@@ -22,13 +22,23 @@ public class Recipe implements Serializable {
     private Long id;
     @ManyToMany(mappedBy = "recipes")
     private List<WeeklyMenuPlanner> plannerId;
-    @OneToMany(mappedBy = "ingredientId")
+    @OneToMany(mappedBy = "recipe")
     private List<Ingredient> ingredients;
     private int prepTime;
     private String directions;
 
     public Recipe() {
     }
+
+    public Recipe(int prepTime, String directions, List<Ingredient> ingredients) {
+        this.prepTime = prepTime;
+        this.directions = directions;
+        this.ingredients = ingredients; 
+    }
+
+
+    
+    
 
     public Long getId() {
         return id;
@@ -53,5 +63,23 @@ public class Recipe implements Serializable {
     public void setDirections(String directions) {
         this.directions = directions;
     }
+
+    public List<WeeklyMenuPlanner> getPlannerId() {
+        return plannerId;
+    }
+
+    public void setPlannerId(List<WeeklyMenuPlanner> plannerId) {
+        this.plannerId = plannerId;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+    
+    
 
 }

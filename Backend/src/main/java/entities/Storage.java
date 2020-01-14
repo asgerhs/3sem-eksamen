@@ -1,11 +1,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne; 
 
 /**
  *
@@ -19,14 +21,21 @@ public class Storage implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int amount;
-    @ManyToOne
+    @OneToOne(mappedBy = "itemId")
     private Item itemId;
+ 
 
     public Storage() {
     }
-    
 
-    public Long getId() {
+    public Storage(int amount, Item itemId) {
+        this.amount = amount;
+        this.itemId = itemId;
+    }
+
+  
+
+    public Long getId() { 
         return id;
     }
 
@@ -42,6 +51,19 @@ public class Storage implements Serializable {
         this.amount = amount;
     }
 
+    public Item getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Item itemId) {
+        this.itemId = itemId;
+    }
+
+ 
+
+
+
+    
     
     
 }

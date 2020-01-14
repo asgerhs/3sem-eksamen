@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,16 +21,20 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "itemId")
-    private List<Storage> storage;
-    @OneToMany(mappedBy = "itemId")
-    private List<Ingredient> ingredients;
     private String name;
     private int price;
+    @OneToOne
+    private Storage itemId;
+    @OneToOne(mappedBy = "item")
+    private Ingredient ingredient;
 
     public Item() {
     }
-    
+
+    public Item(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
@@ -37,6 +43,8 @@ public class Item implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getName() {
         return name;
@@ -53,6 +61,33 @@ public class Item implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public Storage getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Storage itemId) {
+        this.itemId = itemId;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
     
     
 

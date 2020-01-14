@@ -23,14 +23,22 @@ public class WeeklyMenuPlanner implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
-    private List<Recipe> recipes; 
-    @Temporal(value=TemporalType.DATE)
+    private List<Recipe> recipes;
+    @Temporal(value = TemporalType.DATE)
     private Date weekNo;
-    @Temporal(value=TemporalType.DATE)
+    @Temporal(value = TemporalType.DATE)
     private Date year;
 
     public WeeklyMenuPlanner() {
     }
+
+    public WeeklyMenuPlanner(Date weekNo, Date year, List<Recipe> recipes) {
+        this.weekNo = weekNo;
+        this.year = year;
+        this.recipes = recipes;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -54,6 +62,14 @@ public class WeeklyMenuPlanner implements Serializable {
 
     public void setYear(Date year) {
         this.year = year;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
 }
