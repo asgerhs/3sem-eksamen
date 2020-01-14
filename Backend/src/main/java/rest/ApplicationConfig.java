@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
         resources.add(rest.SetupResource.class);
         resources.add(rest.SwapiResource.class);
         resources.add(rest.UserInfoRessource.class);
+        resources.add(rest.WeeklyMenuPlannerResource.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
         resources.add(security.RolesAllowedFilter.class);

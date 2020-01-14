@@ -33,30 +33,26 @@ public class ItemFacade {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
+
     public List<ItemDTO> getAllItems() {
         Query query = getEntityManager().createQuery("SELECT item FROM Item item", Item.class);
         List<Item> item = query.getResultList();
         List<ItemDTO> dto = new ArrayList();
-        for(Item itm : item){
-            itm.setItemId(null);
-            itm.setIngredient(null);
+        for (Item itm : item) {
             dto.add(new ItemDTO(itm));
+            itm.setIngredient(null);
+            itm.setItemId(null);
         }
         return dto;
-        //return getEntityManager().createQuery("SELECT new entities.dto.ItemDTO(items) FROM Item items", ItemDTO.class).getResultList();
-       
     }
 
-    
-    
-    public ItemDTO getItembyId(long id){
+    public ItemDTO getItembyId(long id) {
         Item item = getEntityManager().find(Item.class, id);
         item.setItemId(null);
         item.setIngredient(null);
         return new ItemDTO(item);
     }
     
-   
+    
 
 }

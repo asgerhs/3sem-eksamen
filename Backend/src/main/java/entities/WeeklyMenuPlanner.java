@@ -72,4 +72,6 @@ public class WeeklyMenuPlanner implements Serializable {
         this.recipes = recipes;
     }
 
+
+
 }

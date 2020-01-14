@@ -1,9 +1,12 @@
 package facades;
 
+import entities.Ingredient;
 import entities.dto.IngredientDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,7 +33,15 @@ public class IngredientFacade {
     }
     
     public List<IngredientDTO> getAllIngredients() {
-        return getEntityManager().createQuery("SELECT new entities.dto.IngredientDTO(ingredient) from Ingredient ingredient", IngredientDTO.class).getResultList();
+        Query query = getEntityManager().createQuery("SELECT ingredient from Ingredient ingredient", Ingredient.class);
+        List<Ingredient> ingredients = query.getResultList();
+        List<IngredientDTO> dto = new ArrayList();
+        for(Ingredient ingredient : ingredients){
+            dto.add(new IngredientDTO(ingredient));
+            ingredient.setItem(null);
+            ingredient.setRecipe(null);
+        }
+        return dto;
     }
     
 }

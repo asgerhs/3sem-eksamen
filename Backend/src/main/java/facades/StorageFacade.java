@@ -1,10 +1,12 @@
 package facades;
 
-import entities.dto.ItemDTO;
+import entities.Storage;
 import entities.dto.StorageDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,7 +33,16 @@ public class StorageFacade {
     }
     
     public List<StorageDTO> getAllItems() {
-        return getEntityManager().createQuery("SELECT new entities.dto.StorageDTO(storage) from Storage storage", StorageDTO.class).getResultList();
+        Query query = getEntityManager().createQuery("SELECT storage from Storage storage", Storage.class);
+        List<Storage> storage = query.getResultList();
+        List<StorageDTO> dto = new ArrayList();
+        for(Storage strg : storage){
+            strg.setItemId(null);
+            dto.add(new StorageDTO(strg));
+        }
+        return dto;
     }
+    
+    
     
 }

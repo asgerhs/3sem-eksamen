@@ -1,9 +1,12 @@
 package facades;
 
+import entities.Recipe;
 import entities.dto.RecipeDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,6 +33,15 @@ public class RecipeFacade {
     }
     
     public List<RecipeDTO> getAllRecipes() {
-        return getEntityManager().createQuery("SELECT new entities.dto.RecipeDTO(recipe) from Recipe recipe", RecipeDTO.class).getResultList();
+        Query query = getEntityManager().createQuery("SELECT new entities.dto.RecipeDTO(recipe) from Recipe recipe", RecipeDTO.class);
+        List<Recipe> recipes = query.getResultList();
+        List<RecipeDTO> dto = new ArrayList();
+        for(Recipe recipe : recipes){
+            dto.add(new RecipeDTO(recipe));
+            recipe.setIngredients(null);
+            recipe.setPlannerId(null);
+        }
+        return dto;
+    
     }
 }

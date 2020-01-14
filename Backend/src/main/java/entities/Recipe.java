@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import net.minidev.json.annotate.JsonIgnore;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     @ManyToMany(mappedBy = "recipes")
     private List<WeeklyMenuPlanner> plannerId;
     @OneToMany(mappedBy = "recipe")
