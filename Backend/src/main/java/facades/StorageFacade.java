@@ -43,6 +43,18 @@ public class StorageFacade {
         return dto;
     }
     
+        public StorageDTO addStorage(StorageDTO storageDTO) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(storageDTO);
+            em.getTransaction().commit();
+            return storageDTO;
+        } finally {
+            em.close();
+        }
+    }
+    
     
     
 }

@@ -15,18 +15,14 @@ public class ItemDTO {
     private Long id;
     private String name;
     private int price;
-    private Storage itemId;
 
     public ItemDTO() {
     }
 
     public ItemDTO(Item item) {
-        if (item.getId() != null) {
-            this.id = item.getId();
-        }
+        this.id = item.getId();
         this.name = item.getName();
         this.price = item.getPrice();
-        this.itemId = item.getItemId();
     }
 
     public Long getId() {
@@ -53,12 +49,6 @@ public class ItemDTO {
         this.price = price;
     }
 
-    public Storage getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Storage itemId) {
-        this.itemId = itemId;
-    }
+  
 
 }

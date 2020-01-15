@@ -1,7 +1,7 @@
 package entities.dto;
 
-import entities.Item;
 import entities.Ingredient;
+import entities.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,21 +11,18 @@ import java.util.List;
  */
 public class IngredientDTO {
 
-     private Long id;
+    private Long id;
     private int amount;
-    private RecipeDTO recipe;
     private ItemDTO item;
 
     public IngredientDTO() {
     }
 
     public IngredientDTO(Ingredient ingredient) {
-        if (ingredient.getId() != null) {
-            this.id = id;
-        }
+        this.id = ingredient.getId();
         this.amount = ingredient.getAmount();
         this.item = new ItemDTO(ingredient.getItem());
-        this.recipe = new RecipeDTO(ingredient.getRecipe());
+
     }
 
     public Long getId() {
@@ -44,14 +41,6 @@ public class IngredientDTO {
         this.amount = amount;
     }
 
-    public RecipeDTO getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(RecipeDTO recipe) {
-        this.recipe = recipe;
-    }
-
     public ItemDTO getItem() {
         return item;
     }
@@ -60,9 +49,5 @@ public class IngredientDTO {
         this.item = item;
     }
 
-   
-  
-    
-    
 
 }

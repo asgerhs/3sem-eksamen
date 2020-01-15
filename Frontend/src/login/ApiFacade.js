@@ -1,4 +1,4 @@
-const URL = "https://asgerhs.dk/3sem-eksamen";
+const URL = "http://localhost:8080/3sem-eksamen";
 
 function handleHttpErrors(res) {
     if (!res.ok) {

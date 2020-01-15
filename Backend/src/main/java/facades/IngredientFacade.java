@@ -1,6 +1,7 @@
 package facades;
 
 import entities.Ingredient;
+import entities.Recipe;
 import entities.dto.IngredientDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,22 @@ public class IngredientFacade {
     }
     
     public List<IngredientDTO> getAllIngredients() {
+//         EntityManager em = getEntityManager();
+//         try{
+//             return em.createQuery("SELECT new entities.dto.IngredientDTO(ingredient) from Ingredient ingredient", IngredientDTO.class).getResultList();
+//         }finally{
+//             em.close();
+//         }
         Query query = getEntityManager().createQuery("SELECT ingredient from Ingredient ingredient", Ingredient.class);
         List<Ingredient> ingredients = query.getResultList();
         List<IngredientDTO> dto = new ArrayList();
         for(Ingredient ingredient : ingredients){
+            System.out.println(ingredient.getItem());
+            System.out.println(ingredient.getRecipe());
             dto.add(new IngredientDTO(ingredient));
-            ingredient.setItem(null);
             ingredient.setRecipe(null);
+            ingredient.setItem(null);
+            
         }
         return dto;
     }

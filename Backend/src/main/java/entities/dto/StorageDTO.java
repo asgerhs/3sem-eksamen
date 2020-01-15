@@ -13,17 +13,21 @@ public class StorageDTO {
 
     private Long id;
     private int amount;
-    private Item itemId;
+    private ItemDTO itemId;
 
     public StorageDTO() {
     }
 
-    public StorageDTO(Storage storage) {
-        if (storage.getId() != null) {
-            this.id = id;
-        }
+    public StorageDTO(ItemDTO item, int amount, Long id) {
+        this.id = id;
+        this.amount = amount;
+        this.itemId = itemId;
+    }
+
+     public StorageDTO(Storage storage) {
+        this.id = storage.getId();
+        this.itemId = new ItemDTO(storage.getItemId());
         this.amount = storage.getAmount();
-        this.itemId = storage.getItemId();
     }
 
     public Long getId() {
@@ -42,11 +46,11 @@ public class StorageDTO {
         this.amount = amount;
     }
 
-    public Item getItemId() {
+    public ItemDTO getItemId() {
         return itemId;
     }
 
-    public void setItemId(Item itemId) {
+    public void setItemId(ItemDTO itemId) {
         this.itemId = itemId;
     }
 

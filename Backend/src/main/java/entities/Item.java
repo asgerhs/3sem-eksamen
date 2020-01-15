@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -13,6 +15,10 @@ import javax.persistence.OneToOne;
  * @author asgerhs
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Item.getAll", query = "SELECT i FROM Item i"),
+    @NamedQuery(name = "Item.deleteAllRows", query = "DELETE FROM Item")
+})
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,7 +29,7 @@ public class Item implements Serializable {
     private int price;
     @OneToOne(cascade = CascadeType.PERSIST)
     private Storage itemId;
-    @OneToOne(mappedBy = "item")
+    @OneToOne(mappedBy = "item", cascade = CascadeType.PERSIST)
     private Ingredient ingredient;
 
     public Item() {
@@ -41,8 +47,6 @@ public class Item implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
@@ -75,20 +79,5 @@ public class Item implements Serializable {
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
     }
-    
-    
-    
-    
-    
-    
 
-    
-
-    
-    
-    
-    
-
-    
-    
 }

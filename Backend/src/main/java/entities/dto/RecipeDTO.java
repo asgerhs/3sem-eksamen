@@ -2,7 +2,6 @@ package entities.dto;
 
 import entities.Ingredient;
 import entities.Recipe;
-import entities.WeeklyMenuPlanner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
 public class RecipeDTO {
 
     private Long id;
-    private List<WeeklyMenuPlannerDTO> plannerId;
     private List<IngredientDTO> ingredients;
     private int prepTime;
     private String directions;
@@ -22,13 +20,8 @@ public class RecipeDTO {
     }
 
     public RecipeDTO(Recipe recipe) {
-        if (recipe.getId() != null) {
             this.id = recipe.getId();
-        }
-        this.plannerId = new ArrayList();
-        for(WeeklyMenuPlanner planner : recipe.getPlannerId()){
-            this.plannerId.add(new WeeklyMenuPlannerDTO(planner));
-        }
+
         this.ingredients = new ArrayList();
         for(Ingredient ingredient : recipe.getIngredients()){
             this.ingredients.add(new IngredientDTO(ingredient));
@@ -45,13 +38,7 @@ public class RecipeDTO {
         this.id = id;
     }
 
-    public List<WeeklyMenuPlannerDTO> getPlannerId() {
-        return plannerId;
-    }
-
-    public void setPlannerId(List<WeeklyMenuPlannerDTO> plannerId) {
-        this.plannerId = plannerId;
-    }
+   
 
     public List<IngredientDTO> getIngredients() {
         return ingredients;

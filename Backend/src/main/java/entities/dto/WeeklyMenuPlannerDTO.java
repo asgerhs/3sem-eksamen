@@ -16,12 +16,11 @@ public class WeeklyMenuPlannerDTO {
 
     private long id;
     private List<RecipeDTO> recipes;
-    @Temporal(value = TemporalType.DATE)
-    private Date weekNo;
-    @Temporal(value = TemporalType.DATE)
-    private Date year;
+    private int weekNo;
+    private int year;
 
     public WeeklyMenuPlannerDTO() {
+        this.recipes = new ArrayList();
     }
     
     public WeeklyMenuPlannerDTO(WeeklyMenuPlanner planner) {
@@ -52,22 +51,23 @@ public class WeeklyMenuPlannerDTO {
         this.recipes = recipes;
     }
 
-    public Date getWeekNo() {
+    public int getWeekNo() {
         return weekNo;
     }
 
-    public void setWeekNo(Date weekNo) {
+    public void setWeekNo(int weekNo) {
         this.weekNo = weekNo;
     }
 
-    public Date getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
+    
     
     
 

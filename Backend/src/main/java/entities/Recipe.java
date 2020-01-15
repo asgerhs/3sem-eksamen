@@ -1,46 +1,48 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import net.minidev.json.annotate.JsonIgnore;
 
 /**
  *
  * @author asgerhs
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Recipe.getAll", query = "SELECT r FROM Recipe r"),
+    @NamedQuery(name = "Recipe.deleteAllRows", query = "DELETE FROM Recipe")
+})
 public class Recipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "recipes")
-    private List<WeeklyMenuPlanner> plannerId;
     @OneToMany(mappedBy = "recipe")
     private List<Ingredient> ingredients;
     private int prepTime;
     private String directions;
+    private List<WeeklyMenuPlanner> weeklyMenuPlan;
 
     public Recipe() {
+        this.ingredients = new ArrayList();
+        this.weeklyMenuPlan = new ArrayList();
     }
 
-    public Recipe(int prepTime, String directions, List<Ingredient> ingredients) {
+    public Recipe(int prepTime, String directions) {
         this.prepTime = prepTime;
         this.directions = directions;
-        this.ingredients = ingredients; 
+        this.ingredients = new ArrayList();
+        this.weeklyMenuPlan = new ArrayList();
     }
-
-
-    
-    
 
     public Long getId() {
         return id;
@@ -48,6 +50,14 @@ public class Recipe implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public int getPrepTime() {
@@ -66,22 +76,14 @@ public class Recipe implements Serializable {
         this.directions = directions;
     }
 
-    public List<WeeklyMenuPlanner> getPlannerId() {
-        return plannerId;
+    public List<WeeklyMenuPlanner> getWeeklyMenuPlan() {
+        return weeklyMenuPlan;
     }
 
-    public void setPlannerId(List<WeeklyMenuPlanner> plannerId) {
-        this.plannerId = plannerId;
+    public void setWeeklyMenuPlan(List<WeeklyMenuPlanner> weeklyMenuPlan) {
+        this.weeklyMenuPlan = weeklyMenuPlan;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-    
-    
+   
 
 }
